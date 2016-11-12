@@ -24,5 +24,12 @@
       <h1>Dipendency Injection</h1>
     Enter name:  <input type="text" ng-model="name2" ng-keyup="upper()">
     </div>
+    <div class="" ng-controller="CustomFilter">
+      Actual msg: {{Amsg()}}<br>
+      Truth msg: {{Trmsg()}}<br>
+      TRUTH msg: {{Trmsg() | truth: 'healthy': 'cookie'}} <br>
+      BIG TRUTH: {{Trmsg() | truth: 'healthy': 'cookie'|uppercase}}
+
+    </div>
   </body>
 </html>
