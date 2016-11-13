@@ -3,6 +3,7 @@
 
 var app = angular.module('MyApp',[]);
 
+ // Dependency Injection -- START
 app.controller('DIController',DIController);
 DIController.$inject = ['$scope','$filter'];
 
@@ -14,9 +15,13 @@ function DIController($scope, $filter,LoveFilter){
     $scope.name2 = uprCase($scope.name2);
   }
 };
+// Dependency Injection --END
 
+// Name Calculator -- START
+app.controller('nameCalcController',nameCalcController);
+nameCalcController.$inject =['$scope'];
 
-app.controller('nameCalcController', function($scope){
+function nameCalcController($scope){
     $scope.name1 = "";
     $scope.totalVal = 0;
     $scope.displaynumeric = function(){
@@ -29,12 +34,12 @@ app.controller('nameCalcController', function($scope){
       for (var i = 0; i < string.length; i++) {
         totalStringVal += string.charCodeAt(i);
       }
-
       return totalStringVal;
     }
 
-  });
-
+  };
+// Name Calculator -- END
+// Custom Filter -- START
   app.controller('CustomFilter',CustomFilter)
   .filter('loves',LovesFilter)
   .filter('truth',TruthFilter);
@@ -68,5 +73,37 @@ app.controller('nameCalcController', function($scope){
       return input;
     }
   }
+// Custom Filter -- END
+// Watch Counter --START
+app.controller('CounterController', CounterController);
+CounterController.$inject = ['$scope'];
+function CounterController($scope){
+  $scope.onceCounter = 0;
+  $scope.counter = 0;
 
+  $scope.noOfWatch = function(){
+    console.log('# of Watchers: ',$scope.$$watchersCount);
+  };
+  $scope.onceCounterr = function(){
+    $scope.onceCounter = 1;
+  };
+
+  $scope.upCounter = function(){
+    $scope.counter++;
+  };
+  // $scope.$watch(function(){
+  //   console.log("Digest Loop Fired!");
+  // });
+      // $scope.$watch('onceCounter',function(newVal, oldVal){
+      //   console.log('onceCounter old Value: ',oldVal);
+      //   console.log('onceCounter new Value: ',newVal);
+      // });
+      //
+      // $scope.$watch('counter',function(newVal, oldVal){
+      //   console.log('counter old Value: ',oldVal);
+      //   console.log('counter new Value: ',newVal);
+      // });
+
+};
+// Watch Counter -- End
 })();
