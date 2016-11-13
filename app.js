@@ -106,4 +106,30 @@ function CounterController($scope){
 
 };
 // Watch Counter -- End
+
+app.controller('BindingController',BindingController);
+BindingController.$inject = ['$scope'];
+
+function BindingController($scope){
+  $scope.firstName = "Sandeep";
+  //$scope.lastName = "Kumar";
+//  $scope.fullName = "";
+
+  $scope.showNoOfWatchers = function(){
+    console.log("# of watchers: ",$scope.$$watchersCount);
+  };
+
+  $scope.setFullName = function(){
+    $scope.fullName = $scope.firstName+" "+"Kumar";
+  };
+
+  $scope.logFirstName = function(){
+      console.log('First Name: ',$scope.firstName);
+  };
+
+  $scope.logFullName = function(){
+      console.log('Full Name: ',$scope.fullName);
+  };
+
+};
 })();
