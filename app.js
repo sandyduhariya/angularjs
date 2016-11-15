@@ -106,7 +106,7 @@ function CounterController($scope){
 
 };
 // Watch Counter -- End
-
+// Binding Controller START
 app.controller('BindingController',BindingController);
 BindingController.$inject = ['$scope'];
 
@@ -132,4 +132,10 @@ function BindingController($scope){
   };
 
 };
+
+// Binding Controller END
+
+
+
+
 })();
